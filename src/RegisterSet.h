@@ -35,6 +35,20 @@ public:
 	byte getA() const;
 	byte getF() const;
 
+	bool isSignFlagSet() const;
+	bool isZeroFlagSet() const;
+	bool isHalfCarryFlagSet() const;
+	bool isParityOrOverflowFlagSet() const;
+	bool isSubtractFlagSet() const;
+	bool isCarryFlagSet() const;
+
+	void setSignFlag(bool value);
+	void setZeroFlag(bool value);
+	void setHalfCarryFlag(bool value);
+	void setParityOrOverflowFlag(bool value);
+	void setSubtractFlag(bool value);
+	void setCarryFlag(bool value);
+
 	word& getBC();
 	byte& getB();
 	byte& getC();

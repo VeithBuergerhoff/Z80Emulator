@@ -31,6 +31,83 @@ byte RegisterSet::getF() const
 	return m_AF.rightByte;
 }
 
+bool isFlagSet(int offset)
+{
+	return ((m_AF >> offset) & 1) == 1;
+}
+
+void setFlag(int offset, bool value)
+{
+	if (value)
+	{
+		m_AF |= (1 << offset);
+	}
+	else
+	{
+		m_AF &= ~(1 << offset);
+	}
+}
+
+bool RegisterSet::isSignFlagSet() const
+{
+	return isFlagSet(7);
+}
+
+bool RegisterSet::isZeroFlagSet() const
+{
+	return isFlagSet(6);
+}
+
+bool RegisterSet::isHalfCarryFlagSet() const
+{
+	return isFlagSet(4);
+}
+
+bool RegisterSet::isParityOrOverflowFlagSet() const
+{
+	return isFlagSet(2);
+}
+
+bool RegisterSet::isSubtractFlagSet() const
+{
+	return isFlagSet(1);
+}
+
+bool RegisterSet::isCarryFlagSet() const
+{
+	return isFlagSet(0);
+}
+
+void RegisterSet::setSignFlag(bool value)
+{
+	setFlag(7, value);
+}
+
+void RegisterSet::setZeroFlag(bool value)
+{
+	setFlag(6, value);
+}
+
+void RegisterSet::setHalfCarryFlag(bool value)
+{
+	setFlag(4, value);
+}
+
+void RegisterSet::setParityOrOverflowFlag(bool value)
+{
+	setFlag(2, value);
+}
+
+void RegisterSet::setSubtractFlag(bool value)
+{
+	setFlag(1, value);
+}
+
+void RegisterSet::setCarryFlag(bool value)
+{
+	setFlag(0, value);
+}
+
 word& RegisterSet::getBC()
 {
 	return m_BC.word;
